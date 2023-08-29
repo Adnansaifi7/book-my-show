@@ -52,6 +52,7 @@ function NavLg () {
         alt="logo" className='w-full h-full' />
       </div>
       <div className='w-full flex items-center gap-3 bg-white px-3 py-1 rounded-md'>
+       <BiSearch/>
       <input
      type="search" 
      className="w-full bg-transparent border-none focus:outline-none" 
