@@ -7,20 +7,54 @@
  //Layout Hoc
  import DefaultLayoutHoc from '../layout/Default.layout';
  
+
  const HomePage = () => {
    const [recommendedMovies, setRecommendedMovies] = useState([]);
    const [premierMovies, setPremierMovies] = useState([]);
    const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
   
+   useEffect (() => {
+    const requestPopularMovies = async() => {
+     const getPopularMovies = await axios.get(
+      "movie/popular"
+      );
+     setRecommendedMovies(getPopularMovies.data.results);
+    };
+    requestPopularMovies();
+   }, []);
+
+   useEffect (() => {
+    const requestTopRatedMovies = async() => {
+     const getTopRatedMovies = await axios.get(
+      "movie/top_rated"
+      );
+     setPremierMovies(getTopRatedMovies.data.results);
+    };
+    requestTopRatedMovies();
+   }, []);
+
+   useEffect (() => {
+    const requestUpcomingMovies = async() => {
+     const getTopRatedMovies = await axios.get(
+      "https://api.themoviedb.org/3/tv/top_rated?api_key=17b8eacc4dd9938829aa943b1dfb3857"
+      );
+     setOnlineStreamEvents(getTopRatedMovies.data.results);
+    };
+    requestUpcomingMovies();
+   }, []);
+
+
      useEffect (() => {
       const requestTopRatedMovies = async() => {
        const getTopRatedMovies = await axios.get(
-        "https://api.themoviedb.org/3/tv/top_rated?api_key=17b8eacc4dd9938829aa943b1dfb3857"
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=17b8eacc4dd9938829aa943b1dfb3857"
         );
        setRecommendedMovies(getTopRatedMovies.data.results);
       };
       requestTopRatedMovies();
      }, []);
+
+     
   
   
    return(
@@ -50,7 +84,7 @@
        </div>
 
        <PosterSlider
-          title= "Recommended Movies" 
+          title= "Premier Movies" 
           subject = "Brand New releases every friday" 
           posters = {premierMovies}
           isDark = {true}
@@ -62,7 +96,7 @@
           title= "Online Streaming Event" 
           subject = "" 
           posters = {onlineStreamEvents}
-          isDark = {true}
+          isDark = {false}
        />
      </div>
     </>
