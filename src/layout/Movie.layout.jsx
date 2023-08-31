@@ -15,7 +15,7 @@ const MovieLayoutHoc =
             <div>Footer</div>
         </div>
     
-  )
-}
+  );
+};
 
 export default MovieLayoutHoc;

@@ -217,9 +217,6 @@ const MoviePage = () => {
     </div>
 
     </div>
-    
-     
-
     </>
   )
 }
